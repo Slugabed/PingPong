@@ -11,16 +11,17 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * Created by Bulat on 30.09.2016.
  */
-public class LockPingPong extends PingPong {
+public class LockPingPong implements Runnable {
     private final static List<Condition> locks = new ArrayList<>();
     private static Lock lock = new ReentrantLock();
     private static Integer AMOUNT_OF_THREADS;
     private static Integer COUNT;
     private static volatile int turns = 0;
     private static ExecutorService executor;
+    private final Integer threadId;
 
     public LockPingPong(Integer threadId) {
-        super(threadId);
+        this.threadId = threadId;
     }
 
     public static void main(String[] args) {
@@ -60,5 +61,9 @@ public class LockPingPong extends PingPong {
                 }
             }
         }
+    }
+
+    public Integer getThreadId() {
+        return threadId;
     }
 }

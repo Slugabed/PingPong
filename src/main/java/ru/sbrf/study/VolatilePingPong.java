@@ -6,14 +6,15 @@ import java.util.concurrent.Executors;
 /**
  * Created by Bulat on 28.09.2016.
  */
-public class VolatilePingPong extends PingPong {
+public class VolatilePingPong implements Runnable {
     private static Integer AMOUNT_OF_THREADS;
     private static Integer COUNT;
     private static volatile int turns = 0;
     private static ExecutorService executor;
+    private final Integer threadId;
 
     public VolatilePingPong(Integer threadId) {
-        super(threadId);
+        this.threadId = threadId;
     }
 
     public static void main(String[] args) {
@@ -53,4 +54,7 @@ public class VolatilePingPong extends PingPong {
         return (getThreadId().equals(turns % AMOUNT_OF_THREADS));
     }
 
+    public Integer getThreadId() {
+        return threadId;
+    }
 }
