@@ -3,19 +3,19 @@ package ru.sbrf.study;
 /**
  * Created by Bulat on 28.09.2016.
  */
-public abstract class PingPong implements Runnable{
-    public static final String PING = "PING";
-    public static final String PONG = "PONG";
-    private final String nameOfThread;
-    public PingPong(String nameOfThread) {
-        this.nameOfThread = nameOfThread;
+abstract class PingPong implements Runnable {
+    private final Integer threadId;
+
+    public PingPong(Integer threadId) {
+        this.threadId = threadId;
     }
 
+    @Deprecated
     protected void printMessage() {
-        System.out.println(nameOfThread);
+        System.out.println("I am thread " + threadId);
     }
 
-    public String getNameOfThread() {
-        return nameOfThread;
+    public Integer getThreadId() {
+        return threadId;
     }
 }
